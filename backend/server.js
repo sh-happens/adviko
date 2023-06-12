@@ -1,15 +1,19 @@
 require('dotenv').config()
 
 const express = require('express')
-const connectdb = require('./config/db')
+const connectDB = require('./config/db')
+const errorHandler = require('./middleware/errorHandler')
 
-connectdb()
+connectDB()
 
 const app = express()
-
+//middleware
 app.use(express.json())
-
+//routes
 app.use('/api/advisors', require('./routes/advisorsRoutes'))
+//error handler
+app.use(errorHandler)
+
 
 const PORT = process.env.PORT
 
