@@ -5,7 +5,6 @@ import {
   FormControl,
   FormControlLabel,
   Grid,
-  makeStyles,
   Paper,
   Radio,
   RadioGroup,
@@ -15,30 +14,10 @@ import {
 } from "@material-ui/core";
 
 import { AdvisorCard } from "components/AdvisorCard";
+import { TestIds } from "test/utils/testIds";
 import { useAdvisors } from "./model/useAdvisors";
+import { useStyles } from "./styles";
 
-const useStyles = makeStyles({
-  root: {
-    marginTop: 20,
-  },
-  loader: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  paper: {
-    marginBottom: "1rem",
-    padding: "13px",
-  },
-  filters: {
-    padding: "0 1.5rem",
-  },
-  reviewsRangeInputs: {
-    display: "flex",
-    justifyContent: "space-between",
-  },
-});
 
 const Advisors = () => {
   const classes = useStyles();
@@ -47,10 +26,10 @@ const Advisors = () => {
 
   return (
     <Container className={classes.root}>
-      <Paper className={classes.paper}>
+      <Paper  data-testid={TestIds.Advisor} className={classes.paper}>
         <Grid container>
           <Grid item xs={12} sm={6}>
-            <Typography gutterBottom>Filtering</Typography>
+            <Typography data-testid={TestIds.Filtering}  gutterBottom>Filtering</Typography>
             <div className={classes.filters}>
               <Slider
                 min={0}
@@ -92,7 +71,7 @@ const Advisors = () => {
             </div>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography gutterBottom>Sort by</Typography>
+            <Typography data-testid={TestIds.Sorting}  gutterBottom>Sort by</Typography>
 
             <FormControl component="fieldset" className={classes.filters}>
               <RadioGroup
